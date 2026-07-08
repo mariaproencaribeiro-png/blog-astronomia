@@ -1,18 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Minha Página Incrível</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-<header>
-    <h1>Astronomia</h1>
-    <p>Curiosodades sobre o espaço</p>
-</header>
-<main>
-    <h2>o porque o espaço e tão misterioso</h2>
-    <p>escrever sobre o assunto</p>
-</main>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Praia paradisíaca" class="card-image">
+        
+        <div class="card-content">
+            <span class="tag">Viagem</span>
+            <h2>Explore o Mundo</h2>
+            <p>Descubra destinos inacreditáveis, viva novas aventuras e colecione memórias inesquecíveis pelo planeta.</p>
+            
+            <button class="like-button" onclick="toggleLike()">
+                <i class="fa-regular fa-heart" id="heart-icon"></i> Curtir
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function toggleLike() {
+            const button = document.querySelector('.like-button');
+            const icon = document.getElementById('heart-icon');
+            
+            button.classList.toggle('liked');
+            
+            if (button.classList.contains('liked')) {
+                icon.className = "fa-solid fa-heart";
+            } else {
+                icon.className = "fa-regular fa-heart";
+            }
+        }
+    </script>
 </body>
 </html>
