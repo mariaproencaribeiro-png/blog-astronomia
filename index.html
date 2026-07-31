@@ -30,7 +30,8 @@
             
             <div class="actions">
                 <button class="like-button" onclick="toggleLike()">
-                    <i class="fa-regular fa-heart" id="heart-icon"></i> Curtir
+                    <i class="fa-regular fa-heart" id="heart-icon"></i> Curtir 
+                    (<span id="like-count">0</span>)
                 </button>
             </div>
 
@@ -47,24 +48,33 @@
                 </div>
 
                 <div class="comments-list" id="comments-list">
-                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Função para curtir
+        // Variável para armazenar o número de curtidas
+        let likes = 0;
+
+        // Função para curtir / descurtir
         function toggleLike() {
             const button = document.querySelector('.like-button');
             const icon = document.getElementById('heart-icon');
+            const likeCountDisplay = document.getElementById('like-count');
             
             button.classList.toggle('liked');
             
             if (button.classList.contains('liked')) {
                 icon.className = "fa-solid fa-heart";
+                likes++; // Incrementa o número de curtidas
             } else {
                 icon.className = "fa-regular fa-heart";
+                likes--; // Decrementa se o usuário descurtir
             }
+
+            // Atualiza o valor na tela
+            likeCountDisplay.textContent = likes;
         }
 
         // Função para adicionar comentário
