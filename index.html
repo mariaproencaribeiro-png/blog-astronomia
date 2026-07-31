@@ -28,13 +28,32 @@
             
             <p>A astronomia continua evoluindo com novas descobertas feitas por telescópios espaciais e missões científicas. Cada avanço amplia nosso conhecimento sobre o universo e nos aproxima de responder perguntas que antes pareciam impossíveis. Assim como em Interestelar, a ciência nos mostra que a curiosidade e a busca pelo conhecimento são as maiores ferramentas para explorar o desconhecido.</p>
             
-            <button class="like-button" onclick="toggleLike()">
-                <i class="fa-regular fa-heart" id="heart-icon"></i> Curtir
-            </button>
+            <div class="actions">
+                <button class="like-button" onclick="toggleLike()">
+                    <i class="fa-regular fa-heart" id="heart-icon"></i> Curtir
+                </button>
+            </div>
+
+            <hr class="divider">
+            
+            <div class="comments-section">
+                <h3><i class="fa-regular fa-comments"></i> Comentários</h3>
+                
+                <div class="comment-form">
+                    <textarea id="comment-input" placeholder="Escreva um comentário sobre o artigo..."></textarea>
+                    <button class="comment-button" onclick="addComment()">
+                        <i class="fa-solid fa-paper-plane"></i> Comentar
+                    </button>
+                </div>
+
+                <div class="comments-list" id="comments-list">
+                    </div>
+            </div>
         </div>
     </div>
 
     <script>
+        // Função para curtir
         function toggleLike() {
             const button = document.querySelector('.like-button');
             const icon = document.getElementById('heart-icon');
@@ -46,6 +65,30 @@
             } else {
                 icon.className = "fa-regular fa-heart";
             }
+        }
+
+        // Função para adicionar comentário
+        function addComment() {
+            const input = document.getElementById('comment-input');
+            const commentText = input.value.trim();
+
+            if (commentText === "") {
+                alert("Por favor, digite um comentário antes de enviar.");
+                return;
+            }
+
+            const commentsList = document.getElementById('comments-list');
+
+            // Cria o elemento do novo comentário
+            const newComment = document.createElement('div');
+            newComment.className = 'comment-item';
+            newComment.innerHTML = `<p>${commentText}</p>`;
+
+            // Adiciona no topo da lista
+            commentsList.prepend(newComment);
+
+            // Limpa o campo de texto
+            input.value = "";
         }
     </script>
 </body>
