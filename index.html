@@ -7,150 +7,68 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Variáveis de cores para os dois temas */
-        :root {
-            --bg-color: #f1f5f9;
-            --card-bg: #ffffff;
-            --text-color: #334155;
-            --title-color: #0f172a;
-            --border-color: #cbd5e1;
-            --input-bg: #f8fafc;
-            --button-toggle-bg: #e2e8f0;
-            --button-toggle-color: #0f172a;
+        /* Estilos e regras para o Modo Escuro */
+        body, .card, p, h2, h3, textarea, .comment-item, .theme-toggle {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
-        /* Tema Escuro Ativo (Cores suavizadas para reduzir o cansaço visual) */
-        body.dark-mode {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #cbd5e1;
-            --title-color: #f8fafc;
-            --border-color: #334155;
-            --input-bg: #0f172a;
-            --button-toggle-bg: #334155;
-            --button-toggle-color: #f8fafc;
-        }
-
-        /* Transição suave em todas as mudanças de cor */
-        body, .card, p, h2, h3, textarea, .comment-item, .theme-toggle-btn {
-            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            max-width: 800px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .card-content {
-            padding: 24px;
-            position: relative;
-        }
-
-        /* Cabeçalho do Card com Alinhamento do Botão de Tema */
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .tag {
-            background-color: #2563eb;
-            color: #ffffff;
-            padding: 4px 12px;
-            border-radius: 16px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-
-        /* Botão Acessível de Modo Escuro */
-        .theme-toggle-btn {
-            display: flex;
+        .theme-toggle {
+            display: inline-flex;
             align-items: center;
             gap: 8px;
-            background-color: var(--button-toggle-bg);
-            color: var(--button-toggle-color);
-            border: 1px solid var(--border-color);
-            padding: 8px 14px;
+            background-color: #e2e8f0;
+            color: #0f172a;
+            border: 1px solid #cbd5e1;
+            padding: 8px 16px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
+            margin-bottom: 16px;
         }
 
-        .theme-toggle-btn:focus-visible {
-            outline: 2px solid #2563eb;
-            outline-offset: 2px;
+        .theme-toggle:hover {
+            background-color: #cbd5e1;
         }
 
-        h2, h3 {
-            color: var(--title-color);
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #e2e8f0;
         }
 
-        p {
-            line-height: 1.6;
+        body.dark-mode .card {
+            background-color: #1e293b;
+            border-color: #334155;
         }
 
-        .divider {
-            border: 0;
-            height: 1px;
-            background-color: var(--border-color);
-            margin: 24px 0;
+        body.dark-mode h2, 
+        body.dark-mode .comments-section h3 {
+            color: #f8fafc;
         }
 
-        textarea {
-            width: 100%;
-            background-color: var(--input-bg);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 10px;
-            box-sizing: border-box;
-            resize: vertical;
-            min-height: 80px;
+        body.dark-mode p {
+            color: #cbd5e1;
         }
 
-        .comment-item {
-            background-color: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 10px;
+        body.dark-mode .divider {
+            background-color: #334155;
         }
 
-        .like-button, .comment-button {
-            cursor: pointer;
-            padding: 8px 16px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background-color: var(--input-bg);
-            color: var(--text-color);
-            margin-top: 8px;
+        body.dark-mode textarea,
+        body.dark-mode .comment-item {
+            background-color: #0f172a;
+            border-color: #334155;
+            color: #f8fafc;
         }
 
-        .like-button.liked {
-            color: #dc2626;
-            border-color: #dc2626;
+        body.dark-mode .theme-toggle {
+            background-color: #334155;
+            color: #f8fafc;
+            border-color: #475569;
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background-color: #475569;
         }
     </style>
 </head>
@@ -160,15 +78,12 @@
         <img src="Gemini_Generated_Image_6gpyl66gpyl66gpy.png" alt="Ilustração sobre Astronomia e Buracos de Minhoca" class="card-image">
         
         <div class="card-content">
-            <div class="card-header">
-                <span class="tag">Astronomia</span>
-                <!-- Botão do Modo Escuro / Claro -->
-                <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Alternar entre modo claro e escuro">
-                    <i class="fa-solid fa-moon" id="theme-icon"></i>
-                    <span id="theme-text">Modo Escuro</span>
-                </button>
-            </div>
+            <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Alternar modo escuro">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+                <span id="theme-text">Modo Escuro</span>
+            </button>
 
+            <span class="tag">Astronomia</span>
             <h2>Astronomia e Buracos de Minhoca: A Ciência por Trás de Interestelar</h2>
             
             <p>O universo é repleto de mistérios que desafiam a imaginação humana. Entre galáxias, estrelas, buracos negros e planetas distantes, um dos conceitos mais fascinantes da física moderna é o buraco de minhoca. Embora ainda não exista evidência de que eles realmente existam, essas estruturas são estudadas por cientistas como soluções teóricas previstas pela Teoria da Relatividade Geral de Albert Einstein.</p>
@@ -209,39 +124,6 @@
     </div>
 
     <script>
-        // Lógica de Troca de Tema (Escuro / Claro)
-        function toggleTheme() {
-            const body = document.body;
-            const themeIcon = document.getElementById('theme-icon');
-            const themeText = document.getElementById('theme-text');
-
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-
-            // Atualiza ícone e texto do botão
-            if (isDarkMode) {
-                themeIcon.className = "fa-solid fa-sun";
-                themeText.textContent = "Modo Claro";
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeIcon.className = "fa-solid fa-moon";
-                themeText.textContent = "Modo Escuro";
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        // Verifica preferência do usuário salva ou do sistema operacional ao carregar
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-                document.body.classList.add('dark-mode');
-                document.getElementById('theme-icon').className = "fa-solid fa-sun";
-                document.getElementById('theme-text').textContent = "Modo Claro";
-            }
-        });
-
         // Variável para armazenar o número de curtidas
         let likes = 0;
 
@@ -255,12 +137,13 @@
             
             if (button.classList.contains('liked')) {
                 icon.className = "fa-solid fa-heart";
-                likes++;
+                likes++; // Incrementa o número de curtidas
             } else {
                 icon.className = "fa-regular fa-heart";
-                likes--;
+                likes--; // Decrementa se o usuário descurtir
             }
 
+            // Atualiza o valor na tela
             likeCountDisplay.textContent = likes;
         }
 
@@ -276,13 +159,46 @@
 
             const commentsList = document.getElementById('comments-list');
 
+            // Cria o elemento do novo comentário
             const newComment = document.createElement('div');
             newComment.className = 'comment-item';
             newComment.innerHTML = `<p>${commentText}</p>`;
 
+            // Adiciona no topo da lista
             commentsList.prepend(newComment);
+
+            // Limpa o campo de texto
             input.value = "";
         }
+
+        // Função para alternar o modo escuro
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+
+            if (isDark) {
+                themeIcon.className = "fa-solid fa-sun";
+                themeText.textContent = "Modo Claro";
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.className = "fa-solid fa-moon";
+                themeText.textContent = "Modo Escuro";
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Restaura a preferência salva ao carregar a página
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-icon').className = "fa-solid fa-sun";
+                document.getElementById('theme-text').textContent = "Modo Claro";
+            }
+        });
     </script>
 </body>
 </html>
