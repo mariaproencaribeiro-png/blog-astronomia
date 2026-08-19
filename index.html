@@ -1,16 +1,288 @@
-// Função para alternar entre Modo Claro e Escuro
-function toggleTheme() {
-    const body = document.body;
-    const themeIcon = document.getElementById('theme-icon');
-    const themeText = document.getElementById('theme-text');
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomia e Buracos de Minhoca: A Ciência por Trás de Interestelar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variáveis de cores para os dois temas */
+        :root {
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+            --title-color: #0f172a;
+            --border-color: #cbd5e1;
+            --input-bg: #f8fafc;
+            --button-toggle-bg: #e2e8f0;
+            --button-toggle-color: #0f172a;
+        }
 
-    body.classList.toggle('light-mode');
+        /* Tema Escuro Ativo (Cores suavizadas para reduzir o cansaço visual) */
+        body.dark-mode {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #cbd5e1;
+            --title-color: #f8fafc;
+            --border-color: #334155;
+            --input-bg: #0f172a;
+            --button-toggle-bg: #334155;
+            --button-toggle-color: #f8fafc;
+        }
 
-    if (body.classList.contains('light-mode')) {
-        themeIcon.className = "fa-solid fa-sun";
-        themeText.textContent = "Modo Claro";
-    } else {
-        themeIcon.className = "fa-solid fa-moon";
-        themeText.textContent = "Modo Escuro";
-    }
-}
+        /* Transição suave em todas as mudanças de cor */
+        body, .card, p, h2, h3, textarea, .comment-item, .theme-toggle-btn {
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            max-width: 800px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .card-content {
+            padding: 24px;
+            position: relative;
+        }
+
+        /* Cabeçalho do Card com Alinhamento do Botão de Tema */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            background-color: #2563eb;
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        /* Botão Acessível de Modo Escuro */
+        .theme-toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--button-toggle-bg);
+            color: var(--button-toggle-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .theme-toggle-btn:focus-visible {
+            outline: 2px solid #2563eb;
+            outline-offset: 2px;
+        }
+
+        h2, h3 {
+            color: var(--title-color);
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .divider {
+            border: 0;
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 24px 0;
+        }
+
+        textarea {
+            width: 100%;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .comment-item {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        .like-button, .comment-button {
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            margin-top: 8px;
+        }
+
+        .like-button.liked {
+            color: #dc2626;
+            border-color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <img src="Gemini_Generated_Image_6gpyl66gpyl66gpy.png" alt="Ilustração sobre Astronomia e Buracos de Minhoca" class="card-image">
+        
+        <div class="card-content">
+            <div class="card-header">
+                <span class="tag">Astronomia</span>
+                <!-- Botão do Modo Escuro / Claro -->
+                <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Alternar entre modo claro e escuro">
+                    <i class="fa-solid fa-moon" id="theme-icon"></i>
+                    <span id="theme-text">Modo Escuro</span>
+                </button>
+            </div>
+
+            <h2>Astronomia e Buracos de Minhoca: A Ciência por Trás de Interestelar</h2>
+            
+            <p>O universo é repleto de mistérios que desafiam a imaginação humana. Entre galáxias, estrelas, buracos negros e planetas distantes, um dos conceitos mais fascinantes da física moderna é o buraco de minhoca. Embora ainda não exista evidência de que eles realmente existam, essas estruturas são estudadas por cientistas como soluções teóricas previstas pela Teoria da Relatividade Geral de Albert Einstein.</p>
+            
+            <p>Um buraco de minhoca pode ser imaginado como um "atalho" no espaço-tempo, conectando dois pontos extremamente distantes do universo. Se fosse possível atravessar um deles, uma viagem que levaria milhares ou milhões de anos poderia ser realizada em um tempo muito menor. No entanto, manter um buraco de minhoca aberto exigiria condições físicas e formas de matéria que ainda não foram observadas.</p>
+            
+            <p>Um dos exemplos mais conhecidos desse conceito na cultura popular é o filme Interestelar (2014), dirigido por Christopher Nolan. Na história, um buraco de minhoca aparece próximo ao planeta Saturno e serve como uma passagem para outra galáxia, permitindo que uma equipe de astronautas busque um novo lar para a humanidade. O filme chamou a atenção por tentar representar conceitos científicos com o máximo de realismo possível.</p>
+            
+            <p>Para isso, a produção contou com a colaboração do físico teórico Kip Thorne, especialista em relatividade e gravitação. Graças a essa parceria, fenômenos como a dilatação do tempo, a influência da gravidade extrema e a aparência de um buraco negro foram retratados com grande fidelidade às teorias científicas atuais.</p>
+            
+            <p>Apesar de ainda pertencerem ao campo da teoria, os buracos de minhoca continuam despertando o interesse de pesquisadores e entusiastas da astronomia. Eles representam uma das possibilidades mais intrigantes para compreender a estrutura do universo e, quem sabe um dia, explorar regiões extremamente distantes do cosmos.</p>
+            
+            <p>A astronomia continua evoluindo com novas descobertas feitas por telescópios espaciais e missões científicas. Cada avanço amplia nosso conhecimento sobre o universo e nos aproxima de responder perguntas que antes pareciam impossíveis. Assim como em Interestelar, a ciência nos mostra que a curiosidade e a busca pelo conhecimento são as maiores ferramentas para explorar o desconhecido.</p>
+            
+            <div class="actions">
+                <button class="like-button" onclick="toggleLike()">
+                    <i class="fa-regular fa-heart" id="heart-icon"></i> Curtir 
+                    (<span id="like-count">0</span>)
+                </button>
+            </div>
+
+            <hr class="divider">
+            
+            <div class="comments-section">
+                <h3><i class="fa-regular fa-comments"></i> Comentários</h3>
+                
+                <div class="comment-form">
+                    <textarea id="comment-input" placeholder="Escreva um comentário sobre o artigo..."></textarea>
+                    <button class="comment-button" onclick="addComment()">
+                        <i class="fa-solid fa-paper-plane"></i> Comentar
+                    </button>
+                </div>
+
+                <div class="comments-list" id="comments-list">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lógica de Troca de Tema (Escuro / Claro)
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+
+            // Atualiza ícone e texto do botão
+            if (isDarkMode) {
+                themeIcon.className = "fa-solid fa-sun";
+                themeText.textContent = "Modo Claro";
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.className = "fa-solid fa-moon";
+                themeText.textContent = "Modo Escuro";
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Verifica preferência do usuário salva ou do sistema operacional ao carregar
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-icon').className = "fa-solid fa-sun";
+                document.getElementById('theme-text').textContent = "Modo Claro";
+            }
+        });
+
+        // Variável para armazenar o número de curtidas
+        let likes = 0;
+
+        // Função para curtir / descurtir
+        function toggleLike() {
+            const button = document.querySelector('.like-button');
+            const icon = document.getElementById('heart-icon');
+            const likeCountDisplay = document.getElementById('like-count');
+            
+            button.classList.toggle('liked');
+            
+            if (button.classList.contains('liked')) {
+                icon.className = "fa-solid fa-heart";
+                likes++;
+            } else {
+                icon.className = "fa-regular fa-heart";
+                likes--;
+            }
+
+            likeCountDisplay.textContent = likes;
+        }
+
+        // Função para adicionar comentário
+        function addComment() {
+            const input = document.getElementById('comment-input');
+            const commentText = input.value.trim();
+
+            if (commentText === "") {
+                alert("Por favor, digite um comentário antes de enviar.");
+                return;
+            }
+
+            const commentsList = document.getElementById('comments-list');
+
+            const newComment = document.createElement('div');
+            newComment.className = 'comment-item';
+            newComment.innerHTML = `<p>${commentText}</p>`;
+
+            commentsList.prepend(newComment);
+            input.value = "";
+        }
+    </script>
+</body>
+</html>
