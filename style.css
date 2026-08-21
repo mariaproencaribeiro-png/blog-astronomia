@@ -1,108 +1,272 @@
-/* Reset básico de estilos */
+/* Base e Alinhamento Global */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Fundo da página */
 body {
-    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f1f5f9;
+    color: #1e293b;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
+    padding: 40px 20px;
 }
 
-/* Container principal (Card) */
+/* Container Principal Amplo e Centralizado */
 .card {
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    max-width: 400px;
     width: 100%;
-    transition: transform 0.3s ease;
+    max-width: 950px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-}
-
-/* Imagem */
 .card-image {
     width: 100%;
-    height: 250px;
+    max-height: 480px;
     object-fit: cover;
+    display: block;
 }
 
-/* Área de texto do Card */
 .card-content {
-    padding: 24px;
+    padding: 50px;
 }
 
-/* Tag de categoria */
+/* Cabeçalho do Artigo: Tag e Autor */
+.meta-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
 .tag {
-    background-color: #e8f0fe;
-    color: #1a73e8;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 4px 8px;
-    border-radius: 4px;
     display: inline-block;
-    margin-bottom: 12px;
+    background-color: #e0e7ff;
+    color: #4338ca;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-h2 {
-    color: #2c3e50;
-    margin-bottom: 10px;
-    font-size: 24px;
-}
-
-p {
-    color: #7f8c8d;
-    font-size: 15px;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-/* Botão de Curtir */
-.like-button {
-    background-color: #f8f9fa;
-    border: 2px solid #e2e8f0;
-    color: #4a5568;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
+.author-info {
     display: flex;
     align-items: center;
     gap: 8px;
+    font-size: 1.05rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.author-info i {
+    color: #6366f1;
+}
+
+/* Tipografia */
+h2 {
+    font-size: 2.6rem;
+    margin-bottom: 24px;
+    color: #0f172a;
+    line-height: 1.3;
+}
+
+p {
+    font-size: 1.25rem;
+    line-height: 1.85;
+    color: #334155;
+    margin-bottom: 24px;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 40px 0;
+}
+
+/* Botão Curtir */
+.actions {
+    margin-top: 30px;
+}
+
+.like-button {
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #334155;
     transition: all 0.2s ease;
-    width: 100%;
-    justify-content: center;
 }
 
 .like-button:hover {
-    background-color: #edf2f7;
-    border-color: #cbd5e1;
+    background-color: #e2e8f0;
 }
 
-/* Estado do botão quando for clicado (Curtido) */
 .like-button.liked {
-    background-color: #ffe5ec;
-    border-color: #ffb3c6;
-    color: #ff4d6d;
-    animation: pulse 0.3s linear;
+    color: #e11d48;
+    border-color: #fda4af;
+    background-color: #fff1f2;
 }
 
-/* Animação de clique */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+/* Seção de Comentários */
+.comments-section h3 {
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 18px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    font-family: inherit;
+    font-size: 1.1rem;
+    resize: vertical;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.comment-button {
+    align-self: flex-end;
+    background-color: #4338ca;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.comment-button:hover {
+    background-color: #3730a3;
+}
+
+.comment-item {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
+.comment-item p {
+    font-size: 1.15rem;
+    margin-bottom: 0;
+}
+
+/* Botão de Modo Escuro */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #e2e8f0;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.theme-toggle:hover {
+    background-color: #cbd5e1;
+}
+
+/* Rodapé / Parte Inferior */
+.footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.footer p {
+    font-size: 1rem;
+    color: #64748b;
+    margin-bottom: 0;
+}
+
+/* Transições e Modo Escuro */
+body, .card, p, h2, h3, textarea, .comment-item, .theme-toggle, .author-info, .footer {
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+body.dark-mode {
+    background-color: #0f172a;
+    color: #e2e8f0;
+}
+
+body.dark-mode .card {
+    background-color: #1e293b;
+    border-color: #334155;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode h2, 
+body.dark-mode .comments-section h3 {
+    color: #f8fafc;
+}
+
+body.dark-mode p {
+    color: #cbd5e1;
+}
+
+body.dark-mode .author-info,
+body.dark-mode .footer p {
+    color: #94a3b8;
+}
+
+body.dark-mode .divider,
+body.dark-mode .footer {
+    border-color: #334155;
+}
+
+body.dark-mode textarea,
+body.dark-mode .comment-item {
+    background-color: #0f172a;
+    border-color: #334155;
+    color: #f8fafc;
+}
+
+body.dark-mode .theme-toggle {
+    background-color: #334155;
+    color: #f8fafc;
+    border-color: #475569;
+}
+
+body.dark-mode .theme-toggle:hover {
+    background-color: #475569;
 }
