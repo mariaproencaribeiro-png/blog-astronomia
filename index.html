@@ -213,8 +213,22 @@
             background-color: #cbd5e1;
         }
 
+        /* Rodapé / Parte Inferior */
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
         /* Transição e Suporte ao Modo Escuro */
-        body, .card, p, h2, h3, textarea, .comment-item, .theme-toggle, .author-info {
+        body, .card, p, h2, h3, textarea, .comment-item, .theme-toggle, .author-info, .footer {
             transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
@@ -238,12 +252,14 @@
             color: #cbd5e1;
         }
 
-        body.dark-mode .author-info {
+        body.dark-mode .author-info,
+        body.dark-mode .footer p {
             color: #94a3b8;
         }
 
-        body.dark-mode .divider {
-            background-color: #334155;
+        body.dark-mode .divider,
+        body.dark-mode .footer {
+            border-color: #334155;
         }
 
         body.dark-mode textarea,
@@ -318,6 +334,10 @@
                 <div class="comments-list" id="comments-list">
                 </div>
             </div>
+
+            <footer class="footer">
+                <p>&copy; Desenvolvido por <strong>Maria Proença</strong></p>
+            </footer>
         </div>
     </div>
 
